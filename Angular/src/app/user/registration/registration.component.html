@@ -1,0 +1,43 @@
+<div class="row mt-4">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12 my-auto side-header">
+        <h1>User Registration</h1>
+        <p><em>-Using <strong>ASP.NET CORE</strong>and <strong>Angular</strong></em></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <form [formGroup]="service.formModel" autocomplete="off" (submit)="OnSubmit();">
+      <div class="form-gorup">
+        <label>UserName</label>
+        <input formControlName="UserName" class="form-control" required>
+        <label class="text-danger" *ngIf="service.formModel.get('UserName').errors?.required">Is Null</label>
+      </div>
+      <div class="form-gorup">
+        <label>Email</label>
+        <input formControlName="Email" class="form-control" required>
+        <label class="text-danger" *ngIf="service.formModel.get('Email').errors?.email">Invalid Email</label>
+      </div>
+      <div formGroupName="Passwords">
+        <div class="form-gorup">
+          <label>Password</label>
+          <input formControlName="Password" class="form-control" required>
+        </div>
+        <div class="form-gorup">
+          <label>ConfirmPassword</label>
+          <input formControlName="ConfirmPassword" class="form-control required">
+          <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Password
+            Mismatch</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-gorup col-md-8 offset-md-2">
+          <button type="submit" class="btn btn-lg btn-warning" [disabled] = "!service.formModel.valid">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
